@@ -6,7 +6,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/nomash-library/',
+  base: (process.env.CF_PAGES || process.env.CF_PAGES_URL)
+    ? '/'
+    : (process.env.VITE_PUBLIC_BASE ?? '/'),
   plugins: [
     vue(),
     vueDevTools(),
